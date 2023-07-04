@@ -3,6 +3,7 @@ import os
 import numpy as np
 from tqdm import tqdm
 import shutil
+import pickle
 
 from probeinterface import generate_multi_columns_probe
 
@@ -148,4 +149,5 @@ def writeprobeinformationtocsv(recording, save_path):
     channelpos_array = channelpos_array[channelpos_array[:, 2].argsort()]
 
     # save this array as a csv file
-    np.savetxt(save_path / 'channelpos.csv', channelpos_array, delimiter=',', fmt='%d')
+    with open('D:/channelpos.pkl', 'wb') as f:
+        pickle.dump(channelpos_array, f)
