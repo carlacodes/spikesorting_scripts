@@ -104,9 +104,9 @@ def getchanmapnames_andmove(datadir, ferret):
         elif 'S4' in bigdict[keys]:
             print('found S4')
             dest = Path(str(fulldir)+'/S4')
-        elif 'S2' in bigdict[keys]:
-            print('found S2')
-            dest = Path(str(fulldir)+'/S2')
+        elif 'S2_CGmod' in bigdict[keys]:
+            print('found S2mod')
+            dest = Path(str(fulldir)+'/S2mod')
         elif 'S1' in bigdict[keys]:
             print('found S1')
             dest = Path(str(fulldir)+'/S1')
