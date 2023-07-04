@@ -116,3 +116,36 @@ def getchanmapnames_andmove(datadir, ferret):
             print('already moved')
 
     return bigdict
+
+
+def writeprobeinformationtocsv(recording, save_path):
+
+    '''takes a recording and saves the channel positions in ground truth distance space to a csv file
+    Parameters
+    ----------
+    recording : RecordingExtractor
+        The recording extractor to be saved, e.g.   recording = se.read_spikeglx(datadir / session, stream_id='imec0.ap')
+    # recording = spikeglx_preprocessing(recording)
+    # recordings_list.append(recording)
+    save_path : str
+    Returns
+    -------
+    None
+    '''
+    probe = recording.get_probe()
+
+    contactpos = probe.contact_positions
+    channel_ids = probe.device_channel_indices
+    # combine the channel ids and the contact positions in an array
+    channel_ids = np.array(channel_ids)
+    # reshape channel_ids to a column vector
+    channel_ids = np.reshape(channel_ids, (len(channel_ids), 1))
+    channel_ids = channel_ids.astype(int)
+    contactpos = np.array(contactpos)
+
+    channelpos_array = np.concatenate((channel_ids, contactpos), axis=1)
+    # sort rows by y position
+    channelpos_array = channelpos_array[channelpos_array[:, 2].argsort()]
+
+    # save this array as a csv file
+    np.savetxt(save_path / 'channelpos.csv', channelpos_array, delimiter=',', fmt='%d')
