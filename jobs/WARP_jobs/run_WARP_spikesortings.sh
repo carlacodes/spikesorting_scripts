@@ -23,6 +23,11 @@
 # module load xorg-utils/X11R7.7
 # module load matlab/full/r2021a/9.10
 # module load cuda/10.1.243/gnu-4.9.2
+module unload compilers
+module unload gcc-libs/4.9.2
+module load gcc-libs/10.2.0
+module load compilers/gnu/10.2.0
+
 module load python3/3.8
 
 # Activate python environment
@@ -31,4 +36,4 @@ source /home/skgtjml/envs/spikesorting_scritps/bin/activate
 # Your work should be done in $TMPDIR 
 cd $TMPDIR
 
-python /home/skgtjml/code/spikesorting_scripts/scripts/spikesorting_concatenated_WARP.py /home/skgtjml/code/spikesorting_scripts/scripts/json_files/spikesorting_params_concatenated_WARP_7.json
+python /home/skgtjml/code/spikesorting_scripts/scripts/spikesorting_concatenated_WARP.py /home/skgtjml/code/spikesorting_scripts/scripts/json_files/spikesorting_params_concatenated_WARP.json
